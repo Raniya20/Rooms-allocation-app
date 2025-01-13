@@ -2,13 +2,14 @@
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
+    "password" TEXT,
     "role" TEXT NOT NULL DEFAULT 'student',
     "applicationStatus" TEXT,
     "yearOfStudy" INTEGER,
     "hasMedicalCertificate" BOOLEAN,
     "roomPreferences" TEXT,
     "roommatePreferences" TEXT,
+    "apiKey" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -47,6 +48,9 @@ CREATE TABLE "Feedback" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_apiKey_key" ON "User"("apiKey");
 
 -- AddForeignKey
 ALTER TABLE "Allocation" ADD CONSTRAINT "Allocation_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
