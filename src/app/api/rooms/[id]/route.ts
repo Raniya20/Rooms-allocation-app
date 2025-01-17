@@ -1,4 +1,3 @@
-// src/app/api/rooms/[id]/route.ts
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
@@ -16,7 +15,7 @@ const roomSchema = z.object({
 });
 
 
-const isAdmin = async (req?: NextRequest) => {
+const isAdmin = async (req: NextRequest) => {
     const result = await verifyAuth(req);
     return result.user?.role === 'admin';
 };
